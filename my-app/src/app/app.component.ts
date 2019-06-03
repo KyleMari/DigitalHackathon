@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from './service/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+
+constructor(public firebaseService: FirebaseService){
+
+
+}
+
+testUser(){
+  this.firebaseService.testPayment();
+  this.firebaseService.testUserAdd();
+  this.firebaseService.testRetrievePayment();
+}
+
 }
