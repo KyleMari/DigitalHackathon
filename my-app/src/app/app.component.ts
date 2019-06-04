@@ -15,9 +15,10 @@ constructor(public firebaseService: FirebaseService){
 }
 
 testUser(){
-  this.firebaseService.testPayment();
-  this.firebaseService.testUserAdd();
-  this.firebaseService.testRetrievePayment();
+  // this.firebaseService.testPayment();
+  // this.firebaseService.testUserAdd();
+  // this.firebaseService.testRetrievePayment();
+  this.firebaseService. testOutstandingBalance();
 }
 
 }

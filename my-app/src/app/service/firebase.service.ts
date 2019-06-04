@@ -73,14 +73,6 @@ export class FirebaseService {
             { fieldPath: 'due_date' 
         }, direction: 'DESCENDING' }
     ], 
-    // select: { fields: 
-    //     [
-    //         { fieldPath: 'title' }, 
-    //         { fieldPath: 'summary' }, 
-    //         { fieldPath: 'category' }, 
-    //         { fieldPath: 'created' }
-    //     ] 
-    // }, 
     where: { 
         compositeFilter: { 
             filters: [
@@ -114,9 +106,36 @@ export class FirebaseService {
    }
 
    /***
-    * retrieves balance for  a service type
+    * retrieves balance for using account number
    */
-   retrieveOutstandingBal(userID:string,service_type:string){
+   retrieveOutstandingBal(account_number:string){
+    return this.http.post('https://firestore.googleapis.com/v1/projects/'+this.projectID +'/databases/(default)/documents:runQuery', 
+  {
+    structuredQuery:{
+
+      from: [
+        { collectionId: 'payment' }],
+      select: { fields: 
+        [
+            { fieldPath: 'outstanding_balance' }, 
+        ] 
+      }, 
+      where:{
+      fieldFilter: 
+        {
+          field: {
+            fieldPath: 'account_number' 
+          },
+          op: 'EQUAL',
+          value: {
+            stringValue : account_number
+          }
+        }
+      }
+    }
+  }).toPromise();
+
+
 
    }
 
@@ -213,6 +232,16 @@ testRetrievePayment(){
   .catch(error => { 
       console.log(error) 
   });
+}
+
+testOutstandingBalance(){
+  this.retrieveOutstandingBal("2535346546456").then(usr=>{
+    console.log(JSON.stringify(usr));
+  }).catch(err=>{
+    console.log(JSON.stringify(err));
+  })
+  
+
 }
 
 
