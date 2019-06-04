@@ -1,18 +1,11 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  title = 'my-app';
 
-  constructor(private router: Router) {
-
-  }
-  gotoUser() {
-    this.router.navigate(['/user']); 
-  }
 }
