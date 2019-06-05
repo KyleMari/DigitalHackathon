@@ -28,34 +28,23 @@ export class LoginComponent {
     });
   }
 
-  tryFacebookLogin(){
-    this.authService.doFacebookLogin()
-    .then(res => {
-      this.router.navigate(['/user']);
-    })
-  }
-
-  tryTwitterLogin(){
-    this.authService.doTwitterLogin()
-    .then(res => {
-      this.router.navigate(['/user']);
-    })
-  }
-
-  tryGoogleLogin(){
-    this.authService.doGoogleLogin()
-    .then(res => {
-      this.router.navigate(['/user']);
-    })
-  }
-
   tryLogin(value){
-    this.authService.doLogin(value)
-    .then(res => {
-      this.router.navigate(['/user']);
-    }, err => {
-      console.log(err);
-      this.errorMessage = err.message;
-    })
+    // validates eid string (makes sure that it is a valid eid)
+    const regex = new RegExp("^[a-z.]+@accenture.com$");
+    if (regex.test(value.email)){
+      console.log("Valid eid: " + value.email);
+
+      //proceeds to auth service
+      this.authService.doLogin(value)
+      .then(res => {
+        this.router.navigate(['/user']);
+      }, err => {
+        console.log(err);
+        this.errorMessage = err.message;
+      })
+    }else{
+      console.log("Invalid eid");
+      this.errorMessage = "The eid specified is not a valid eid";
+    }
   }
 }
