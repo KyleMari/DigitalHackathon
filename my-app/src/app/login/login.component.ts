@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../core/auth.service'
 import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FirebaseService} from '../service/firebase.service'
 
 @Component({
   selector: 'page-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(
+    public fs:FirebaseService,
     public authService: AuthService,
     private router: Router,
     private fb: FormBuilder
@@ -57,5 +59,9 @@ export class LoginComponent {
       console.log(err);
       this.errorMessage = err.message;
     })
+  }
+
+  tryTest(){
+    this.fs.testRetrievePayment();
   }
 }

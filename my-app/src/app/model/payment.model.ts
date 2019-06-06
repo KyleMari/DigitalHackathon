@@ -11,7 +11,7 @@ public is_paid:boolean;
 // payment info
 public payment_type:string;
 public account_number:string;
-public service_type:string;
+public transaction_type:string;
 
 // due
 public due_date:Date;

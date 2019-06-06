@@ -27,6 +27,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     RegisterComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
