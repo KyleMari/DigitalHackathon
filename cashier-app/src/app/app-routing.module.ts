@@ -8,7 +8,7 @@ const routes: Route[] = [
   { path: 'about', component: AboutComponent },
   { path: 'transactions', component: TransactionsComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: '**', redirectTo: '/home' }
+  { path: '**', redirectTo: '/about' }
 ]
 
 @NgModule({
