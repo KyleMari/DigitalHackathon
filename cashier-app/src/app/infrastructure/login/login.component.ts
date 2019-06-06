@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       //proceeds to auth service
       this.authService.doLogin(value)
       .then(res => {
-        this.router.navigate(['/user']);
+        this.router.navigate(['/navside']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
