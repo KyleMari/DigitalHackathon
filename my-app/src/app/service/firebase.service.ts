@@ -58,6 +58,7 @@ export class FirebaseService {
    /***
     * retrieves a list Promise of unpaid payments
     * 
+    * 
     * for initial run requires index. See error msg
    */
    retrieveUnpaid(userID:string){
