@@ -1,0 +1,156 @@
+<!-- Transactions -->
+<h3>My transactions</h3>
+<div fxLayoutAlign="center center" fxLayout="column">
+
+  <mat-vertical-stepper [linear]="true" #stepper *ngIf="!confirm">
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>
+          Choose Transaction
+        </ng-template>
+        <mat-form-field>
+          <mat-select (selectionChange)="transactionLevel($event)">
+            <mat-option *ngFor="let transaction of transactions" [value]="transaction">
+              {{transaction.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form fxLayout="column">
+        <ng-template matStepLabel>
+          Select start and end time
+        </ng-template>
+        <div *ngIf="selectShuttle">
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerStart" placeholder="Choose a start date"
+              (dateInput)="addStartEvent('input', $event)" (dateChange)="addStartEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+            <mat-datepicker #pickerStart></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerEnd" placeholder="Choose a end date"
+              (dateInput)="addEndEvent('input', $event)" (dateChange)="addEndEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker #pickerEnd></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!selectShuttle">
+          <textarea matInput placeholder="Reason" [(ngModel)]="reason" name="something"></textarea>
+        </div>
+        <div fxLayoutGap="5px">
+          <button mat-flat-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>
+          Amount
+        </ng-template>
+        <mat-form-field>
+          <div style="text-align: center">{{amount}}</div>
+          <textarea matInput disabled>
+          </textarea>
+        </mat-form-field>
+        <div fxLayoutGap="5px">
+          <button mat-flat-button matStepperPrevious>Back</button>
+          <button mat-flat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Payment Method-->
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>
+          Payment Details
+        </ng-template>
+        <mat-form-field>
+          <mat-select (selectionChange)="paymentLevel($event)">
+            <mat-option *ngFor="let payment of paymentMethods" [value]="payment">
+              {{payment.viewMethod}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="cardHolderName" name="something" placeholder="Name on Card">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="cardNumber" name="something" placeholder="Card Number">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="expDate" name="something" placeholder="Exp. Date">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="cvv" name="something" placeholder="CVV">
+          </mat-form-field>
+        </div>
+        <div fxLayoutGap="5px">
+          <button mat-flat-button matStepperPrevious>Back</button>
+          <button mat-flat-button (click)="confirmTransaction()">Confirm</button>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</div>
+
+
+<!-- Summary of Payment -->
+<div *ngIf="confirm">
+  <mat-card>
+    <mat-card-title>Summary of Payment</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListIcon>receipt</mat-icon>
+          <h2 matLine>Jessica Carolina M. Rodriguez</h2>
+          <p matLine>jessica.c.rodriguez@accenture.com</p>
+          <p matLine>Career Level 11</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h2 matLine>Account ID</h2>
+          <p matLine>1234567</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h2 matLine>Transaction Type</h2>
+          <p matLine>{{trasactionType}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h2 matLine>Payment Method</h2>
+          <p matLine>{{paymentMethod}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <h2 matLine>Card Number</h2>
+          <p matLine>{{cardNumber}}</p>
+        </mat-list-item>
+
+        <mat-list-item>
+          <h2 matLine>Amount</h2>
+          <p matLine>{{amount}}</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+<button class="back-button" mat-button color="primary" (click)="previousPage()">Back</button>
+</div>
+
+
+
+
+
