@@ -27,6 +27,7 @@ export class TransactionsComponent implements OnInit {
   confirmPayment: boolean = false;
   summaryPayment: object;
   confirm: boolean = false;
+  cardclick: boolean = false;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -36,13 +37,6 @@ export class TransactionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-
   }
 
   transactionLevel(event) {
@@ -72,21 +66,45 @@ export class TransactionsComponent implements OnInit {
     if (this.trasactionType == "Shuttle") {
        reqBody = {
         'accountID': "1234567",
-        'transaction': this.transaction,
-        'amount': this.amount,
-        'startDate': this.startDate,
-        'end': this.endDate
+        'transaction': "shuttle",
+        'amount': 150,
+        'startDate': "July 3, 2019",
+        'end': "Jule 4, 2019"
       }
     } else {
        reqBody = {
         'accountID': "1234567",
-        'transaction': this.transaction,
-        'amount': this.amount,
-        'reason': this.reason
+        'transaction': "lostID",
+        'amount': 300,
+        'reason': "lost at the bus"
        }
      }
      this.summaryPayment = reqBody;
      reqBody = [];
+   }
+
+   reviewRequest() {    
+    let reqBody;
+    this.trasactionType = "Shuttle";
+    if (this.trasactionType == "Shuttle") {
+       reqBody = {
+        'accountID': "1234567",
+        'transaction': "shuttle",
+        'amount': 150,
+        'startDate': "July 3, 2019",
+        'end': "Jule 4, 2019"
+      }
+    } else {
+       reqBody = {
+        'accountID': "1234567",
+        'transaction': "lostID",
+        'amount': 300,
+        'reason': "lost at the bus"
+       }
+     }
+     this.summaryPayment = reqBody;
+     console.log("details: ", this.summaryPayment);
+     this.cardclick = true;
    }
 }
 
