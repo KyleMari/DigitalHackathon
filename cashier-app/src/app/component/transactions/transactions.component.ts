@@ -36,20 +36,21 @@ export class TransactionsComponent implements OnInit {
 
 
   data: any = [{
-    'accountID': "1234563",
-    'transaction': "Transaction 1",
-    'amount': 5000,
-    'reason': "I have no reason"
+    'accountID': "1234566",
+    'transaction': "shuttle",
+    'amount': 150,
+    'startDate': "July 3, 2019",
+    'end': "Jule 4, 2019"
     },{
-      'accountID': "34342324",
-      'transaction': "Transaction 2",
-      'amount':  6000,
-      'reason': "I have no reason 2"
+      'accountID': "1234567",
+      'transaction': "lostID",
+      'amount': 300,
+      'reason': "lost at the bus"
     },{
-      'accountID': "54654645",
-      'transaction':  "Transaction 3",
-      'amount': 7000,
-      'reason': "I have no reason 3"
+      'accountID': "1234568",
+      'transaction': "lostID",
+      'amount': 300,
+      'reason': "Stolen"
     },];
     
 
@@ -60,7 +61,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    this.excelService.exportAsExcelFile(this.data, 'sample');
+    this.excelService.exportAsExcelFile(this.data, 'Transaction');
  }
 
   ngOnInit() {
