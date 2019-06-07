@@ -150,6 +150,10 @@ export class TransactionsComponent implements OnInit {
       console.log('email sent');
    }
 
+   previousPage() {
+     this.cardclick = false;
+   }
+
 }
 
 
