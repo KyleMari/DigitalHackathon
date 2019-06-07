@@ -10,7 +10,7 @@ import * as firebase from 'firebase/app';
 export  class  AuthService {
 
     user: User;
-    constructor(public  afAuth:  AngularFireAuth, public  router:  Router) { 
+      constructor(public  afAuth:  AngularFireAuth, public  router:  Router) { 
     }
 
     doLogin(value){

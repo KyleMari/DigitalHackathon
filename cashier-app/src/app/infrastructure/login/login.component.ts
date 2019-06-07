@@ -34,13 +34,14 @@ export class LoginComponent implements OnInit {
   tryLogin(value){
     // validates eid string (makes sure that it is a valid eid)
     const regex = new RegExp("^[a-z.]+@accenture.com$");
+
     if (regex.test(value.email)){
       console.log("Valid eid: " + value.email);
 
       //proceeds to auth service
       this.authService.doLogin(value)
       .then(res => {
-        this.router.navigate(['/user']);
+        this.router.navigate(['/navside']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
@@ -49,8 +50,18 @@ export class LoginComponent implements OnInit {
       console.log("Invalid eid");
       this.errorMessage = "The eid specified is not a valid eid";
     }
+    
   }
 
-  }
+  /*tryLogout(){
+    this.authService.doLogout()
+      .then(res => {
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err);
+      })
+  }*/
+
+}
 
 
