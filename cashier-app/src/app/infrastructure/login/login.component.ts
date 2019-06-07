@@ -32,15 +32,14 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin(value){
-    // validates eid string (makes sure that it is a valid eid)
-    const regex = new RegExp("^[a-z.]+@accenture.com$");
-    if (regex.test(value.email)){
-      console.log("Valid eid: " + value.email);
+    // checks if the email address is matched to "iam.admin@accenture.com"
+    if (value.email == "iam.admin@accenture.com"){
+      console.log("Valid admin eid: " + value.email);
 
       //proceeds to auth service
       this.authService.doLogin(value)
       .then(res => {
-        this.router.navigate(['/user']);
+        this.router.navigate(['/navside']);
       }, err => {
         console.log(err);
         this.errorMessage = err.message;

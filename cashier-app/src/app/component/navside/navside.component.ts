@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navside',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavsideComponent implements OnInit {
 
-  constructor() { }
 
   ngOnInit() {
+    this.router.navigate(['/navside/about']);
   }
+
+  constructor(private router : Router) { 
+    
+  }
+
 
 }

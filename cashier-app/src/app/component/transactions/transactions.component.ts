@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {SpreadsheetService} from '../../service/spreadsheet.service';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 
 @Component({
@@ -56,7 +57,8 @@ export class TransactionsComponent implements OnInit {
 
 
 
-  constructor(private _formBuilder: FormBuilder,private excelService:SpreadsheetService) { 
+  constructor(private _formBuilder: FormBuilder,private excelService:SpreadsheetService,
+              private functions: AngularFireFunctions) { 
     this.confirm = false;
   }
 
@@ -134,6 +136,20 @@ export class TransactionsComponent implements OnInit {
      console.log("details: ", this.summaryPayment);
      this.cardclick = true;
    }
+
+   sendConfirmationEmail(){
+      this.functions
+        .httpsCallable('sendConfirmationEmail')({
+            employeeName: "Jessica Carolina M. Rodriguez",
+            employeeEmail: "jessica.c.rodriguez@accenture.com",
+            careerLevel: "11",
+            accountID: "1234567",
+            transactionType: "Lost ID",
+            amount: "300"
+        });
+      console.log('email sent');
+   }
+
 }
 
 
