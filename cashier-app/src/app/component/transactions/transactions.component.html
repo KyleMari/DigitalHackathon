@@ -37,7 +37,9 @@
         </mat-list-item>
       </mat-list>
     </mat-card-content>
-  </mat-card>  
+  </mat-card> 
+
+<button class="download-button" mat-button color="primary"  (click)="exportAsXLSX()">Download as Excel File</button>
 </div>
 
 
@@ -69,11 +71,10 @@
           </mat-list>
         </mat-card-content>
       </mat-card>  
-      
-      <button mat-button color="primary" (click)="sendConfirmationEmail()">Confirm</button>
-
-     
+  <div class="container">
+      <button class="confirm-button" mat-button color="primary" (click)="sendConfirmationEmail()">Confirm</button>
+      <button class="back-button" mat-button color="primary" (click)="previousPage()">Back</button>
+  </div>
 </div>
 
-<p>Export as XLSX by clicking the below button</p>
-<button (click)="exportAsXLSX()"> Download Excel <i class="fa fa-file-excel-o" style="font-size:48px;color:blue"></i></button>
+
