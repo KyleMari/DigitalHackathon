@@ -16,6 +16,11 @@ export class TransactionsComponent implements OnInit {
     {value: '300', viewValue: 'LostID'}
   ];
 
+  paymentMethods: PaymentMethods[] = [
+    {method: 'Credit', viewMethod:'Credit'},
+    {method: 'Debit', viewMethod:'Debit'}
+  ]
+
   amount: string;
   transaction: string;
   trasactionType: string;
@@ -28,6 +33,14 @@ export class TransactionsComponent implements OnInit {
   summaryPayment: object;
   confirm: boolean = false;
   sysDate: string;
+
+  paymentMethod:string;
+  cardHolderName:string;
+  cardNumber :string;
+  expDate:string;
+  cvv:string;
+  isCredit:boolean;
+  isDebit:boolean;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -57,6 +70,18 @@ export class TransactionsComponent implements OnInit {
     }
   }
 
+  paymentLevel(event){
+    this.paymentMethod = event.value.viewMethod;
+
+    if(this.paymentMethod === "Credit"){
+      this.isCredit === true;
+      this.isDebit === false;
+    }else{
+      this.isCredit === false;
+      this.isDebit === false;
+    }
+  }
+
   addStartEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     this.startDate = event.value;
     this.events.push(`${type}: ${event.value}`);
@@ -69,7 +94,6 @@ export class TransactionsComponent implements OnInit {
 
   confirmTransaction() {
     this.confirm = true;
-
     this.sysDate = new Date().toLocaleString();
     let reqBody;
     if (this.trasactionType == "Shuttle") {
@@ -79,7 +103,9 @@ export class TransactionsComponent implements OnInit {
         'amount': this.amount,
         'startDate': this.startDate,
         'end': this.endDate,
-        'dateOfTransaction': this.sysDate
+        'dateOfTransaction': this.sysDate,
+        'paymentMethod':this.paymentMethod,
+        'cardNumber':this.cardNumber,
       }
     } else {
        reqBody = {
@@ -87,7 +113,9 @@ export class TransactionsComponent implements OnInit {
         'transaction': this.transaction,
         'amount': this.amount,
         'reason': this.reason,
-        'dateOfTransaction': this.sysDate
+        'dateOfTransaction': this.sysDate,
+        'paymentMethod':this.paymentMethod,
+        'cardNumber':this.cardNumber,
        }
      }
      this.summaryPayment = reqBody;
@@ -95,13 +123,18 @@ export class TransactionsComponent implements OnInit {
    }
 
    previousPage() {
-     console.log("pasok");
-     this.confirm = false;
-   }
+    console.log("pasok");
+    this.confirm = false;
+  }
 }
+
 
 export interface Transactions {
   value: string;
   viewValue: string;
 }
 
+export interface PaymentMethods{
+  method: string;
+  viewMethod: string;
+}
