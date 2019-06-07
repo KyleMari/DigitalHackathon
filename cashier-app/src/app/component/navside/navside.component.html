@@ -14,6 +14,10 @@
 				<h2 matLine>Settings</h2>
 				<mat-icon matListIcon>settings</mat-icon>
 			</a>
+			<a mat-list-item routerLink="login" routerLinkActive="active-list-item" (click)="sidenav.toggle()">
+				<h2 matLine>Log out</h2>
+				<mat-icon matListIcon>exit_to_app</mat-icon>
+			</a>
 		</mat-nav-list>
 	</mat-sidenav>
 	<mat-sidenav-content>
