@@ -72,33 +72,35 @@
 
 <!-- Summary of Payment -->
 
-<mat-card *ngIf="confirm">
+<div *ngIf="confirm">
+  <mat-card >
     <mat-card-title>Summary of Payment</mat-card-title>
-    <mat-card-content>
-        <mat-list>
-            <mat-list-item>
-                <mat-icon matListIcon>receipt</mat-icon>
-                <h2 matLine>Jessica Carolina M. Rodriguez</h2>
-                <p matLine>jessica.c.rodriguez@accenture.com</p>
-                <p matLine>Career Level 11</p>               
-            </mat-list-item>
-            <mat-list-item>
-                    <h2 matLine>Account ID</h2>
-                    <p matLine>1234567</p>
-            </mat-list-item>
-            <mat-list-item>
-                    <h2 matLine>Transaction Type</h2>
-                    <p matLine>{{trasactionType}}</p>
-            </mat-list-item>
-            <mat-list-item>
-                    <h2 matLine>Amount</h2>
-                    <p matLine>{{amount}}</p>
-            </mat-list-item>
-            <mat-list-item>
-                    <h2 matLine>Date of Transaction</h2>
-                    <p matLine>{{dateOfTransaction}}</p>
-            </mat-list-item>
-        </mat-list>
-    </mat-card-content>
-</mat-card>
-
+      <mat-card-content>
+          <mat-list>
+              <mat-list-item>
+                  <mat-icon matListIcon>receipt</mat-icon>
+                  <h2 matLine>Jessica Carolina M. Rodriguez</h2>
+                  <p matLine>jessica.c.rodriguez@accenture.com</p>
+                  <p matLine>Career Level 11</p>               
+              </mat-list-item>
+              <mat-list-item>
+                      <h2 matLine>Account ID</h2>
+                      <p matLine>1234567</p>
+              </mat-list-item>
+              <mat-list-item>
+                      <h2 matLine>Transaction Type</h2>
+                      <p matLine>{{trasactionType}}</p>
+              </mat-list-item>
+              <mat-list-item>
+                      <h2 matLine>Amount</h2>
+                      <p matLine>{{amount}}</p>
+              </mat-list-item>
+              <mat-list-item>
+                      <h2 matLine>Date of Transaction</h2>
+                      <p matLine>{{dateOfTransaction}}</p>
+              </mat-list-item>
+          </mat-list>
+      </mat-card-content>
+  </mat-card>
+  <button class="back-button" mat-button color="primary" (click)="previousPage()">Back</button>
+</div>
