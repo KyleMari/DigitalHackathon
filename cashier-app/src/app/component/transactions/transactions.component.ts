@@ -93,8 +93,12 @@ export class TransactionsComponent implements OnInit {
      this.summaryPayment = reqBody;
      reqBody = [];
    }
-}
 
+   previousPage() {
+     console.log("pasok");
+     this.confirm = false;
+   }
+}
 
 export interface Transactions {
   value: string;
