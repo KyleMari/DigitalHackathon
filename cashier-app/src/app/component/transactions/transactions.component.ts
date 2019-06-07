@@ -27,6 +27,7 @@ export class TransactionsComponent implements OnInit {
   confirmPayment: boolean = false;
   summaryPayment: object;
   confirm: boolean = false;
+  sysDate: string;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -68,6 +69,8 @@ export class TransactionsComponent implements OnInit {
 
   confirmTransaction() {
     this.confirm = true;
+
+    this.sysDate = new Date().toLocaleString();
     let reqBody;
     if (this.trasactionType == "Shuttle") {
        reqBody = {
@@ -75,14 +78,16 @@ export class TransactionsComponent implements OnInit {
         'transaction': this.transaction,
         'amount': this.amount,
         'startDate': this.startDate,
-        'end': this.endDate
+        'end': this.endDate,
+        'dateOfTransaction': this.sysDate
       }
     } else {
        reqBody = {
         'accountID': "1234567",
         'transaction': this.transaction,
         'amount': this.amount,
-        'reason': this.reason
+        'reason': this.reason,
+        'dateOfTransaction': this.sysDate
        }
      }
      this.summaryPayment = reqBody;
