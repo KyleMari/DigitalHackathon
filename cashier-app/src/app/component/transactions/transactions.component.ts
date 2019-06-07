@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {SpreadsheetService} from '../../service/spreadsheet.service';
+
 
 @Component({
   selector: 'app-transactions',
@@ -31,9 +33,34 @@ export class TransactionsComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { 
+
+  data: any = [{
+    'accountID': "1234563",
+    'transaction': "Transaction 1",
+    'amount': 5000,
+    'reason': "I have no reason"
+    },{
+      'accountID': "34342324",
+      'transaction': "Transaction 2",
+      'amount':  6000,
+      'reason': "I have no reason 2"
+    },{
+      'accountID': "54654645",
+      'transaction':  "Transaction 3",
+      'amount': 7000,
+      'reason': "I have no reason 3"
+    },];
+    
+
+
+
+  constructor(private _formBuilder: FormBuilder,private excelService:SpreadsheetService) { 
     this.confirm = false;
   }
+
+  exportAsXLSX():void {
+    this.excelService.exportAsExcelFile(this.data, 'sample');
+ }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
