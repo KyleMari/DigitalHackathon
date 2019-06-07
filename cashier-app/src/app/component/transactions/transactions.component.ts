@@ -123,7 +123,6 @@ export class TransactionsComponent implements OnInit {
    }
 
    previousPage() {
-    console.log("pasok");
     this.confirm = false;
   }
 }
